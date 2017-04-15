@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\let\<\textless
+\let\>\textgreater
+
+\graphicspath{ {images/} }
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Proyecto \#1}
+\rfoot{P\'agina \thepage}
+
+\begin{document}
+\begin{titlepage}
+  \centering
+  {\scshape\LARGE Instituto Tecnol\'ogico de Costa Rica \par}
+  \vspace{1cm}
+  {\scshape\Large Proyecto \#1\par}
+  \vspace{1.5cm}
+  {\Large\itshape Sa\'ul Zamora\par}
+  \vfill
+  profesor\par
+  Kevin Moraga \textsc{}
+
+  \vfill
+
+% Bottom of the page
+  {\large \today\par}
+\end{titlepage}
+
+\section{Introducci\'on}
+El sistema se basa en una aplicaci\'on web que permita a sus usuarios comprar y/o vender propiedades de bienes ra\'ices. La meta principal es solventar el problema que normalmente se presenta luego de la compra o venta de una propiedad el cual radica en el traspaso de la misma. Dicha situaci\'on involucra abogados notarios que hagan v\'alida la transacci\'on ante el Registro Nacional.
+
+El sistema pretende, mediante el uso de \emph{blockchain}, eliminar la necesidad del abogado notario, almacenando todas las transacciones de propiedades realizadas en un ``libro p\'ublico'', el cual puede ser accesado por los usuarios y ser\'a validado mediante el m\'etodo de la ``miner\'ia de datos'' que generar\'ia los bloques v\'alidos que constituyen el blockchain.
+
+\section{Ambiente de desarrollo}
+\begin{itemize}
+  \item Sistema operativo utilizado: Linux Ubuntu 16.04 LTS
+  \item Ruby versi\'on 2.3.1
+  \item Rails Framework versi\'on 5.0
+\end{itemize}
+
+\section{M\'odulos}
+\subsection{Users}
+Este m\'odulo tendr\'a las funcionalidades respectivas a la creaci\'on, edici\'on y borrado de usuarios. Dentro de los m\'etodos de creaci\'on de usuarios se incluir\'a un login con Facebook.
+
+\subsection{Properties}
+En este m\'odulo los usuarios podr\'an agreguar aquellas propiedades que deseen vender. Deber\'an agregar al menos una caracter\'istica y foto a la propiedad, adem\'as de su direcci\'on.
+
+\subsection{Advertisements}
+En este m\'odulo los usuarios podr\'an crear, editar o eliminar anuncios de sus propiedades. Dichos anuncios deber\'an contener una descripci\'on breve y una sola propiedad. Cada vez que un anuncio reciba un ``bid'' de parte de otro usuario, el propietario del anuncio recibir\'a una notificaci\'on.
+
+Tambi\'en se podr\'a acceder a los anuncios de otros usuarios, con la opci\'on de poner ``bids'' en ellos.
+
+\subsection{Notifications}
+En este m\'odulo, los usuarios podr\'an leer y eliminar las notificaciones que hayan recibido.
+
+\subsection{Bids}
+En este m\'odulo, los usuarios podr\'an accesar los ``bids'' que hayan tenido sus anuncions, los cuales tendr\'an informaci\'on de contacto acerca del usuario que puso el ``bid''. Cada vez que un anuncio es eliminado, se eliminan los ``bids'' correspondientes a ese anuncio.
+
+\subsection{Transactions}
+En este m\'odulo, los usuarios tendr\'an acceso de lectura al libro p\'ublico con las transacciones realizadas por todos los usuarios del sistema.
+
+\section{Bit\'acora de trabajo}
+\begin{itemize}
+  \item 14-04-2017:
+  \begin{itemize}
+    \item 2 horas - dise\~no inicial de la base de datos.
+    \item 2 horas - documentaci\'on.
+  \end{itemize}
+\end{itemize}
+Total de horas trabajadas: 4 horas.
+
+\end{document}
