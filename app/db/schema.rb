@@ -11,48 +11,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426010333) do
+ActiveRecord::Schema.define(version: 20170426015110) do
 
   create_table "advertisements", force: :cascade do |t|
-    t.datetime "date_posted",               default: '2017-04-26 01:07:23', null: false
+    t.datetime "date_posted",               default: '2017-04-26 01:47:12', null: false
     t.datetime "date_expiry",                                               null: false
     t.text     "description", limit: 65535
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
+    t.integer  "user_id",     limit: 4
   end
 
+  add_index "advertisements", ["user_id"], name: "index_advertisements_on_user_id", using: :btree
+
   create_table "bids", force: :cascade do |t|
-    t.decimal  "price_bided", precision: 10
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.decimal  "price_bided",                precision: 10
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "user_id",          limit: 4
+    t.integer  "advertisement_id", limit: 4
   end
+
+  add_index "bids", ["advertisement_id"], name: "index_bids_on_advertisement_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "features", force: :cascade do |t|
     t.text     "description", limit: 65535, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "property_id", limit: 4
   end
+
+  add_index "features", ["property_id"], name: "index_features_on_property_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.string   "topic",      limit: 255
     t.text     "message",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "user_id",    limit: 4
   end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.string   "url",        limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "url",         limit: 255, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "property_id", limit: 4
   end
 
+  add_index "photos", ["property_id"], name: "index_photos_on_property_id", using: :btree
+
   create_table "properties", force: :cascade do |t|
-    t.decimal  "price",                  precision: 10
-    t.string   "address",    limit: 255
-    t.string   "identifier", limit: 255
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.decimal  "price",                        precision: 10
+    t.string   "address",          limit: 255
+    t.string   "identifier",       limit: 255
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "user_id",          limit: 4
+    t.integer  "property_type_id", limit: 4
   end
+
+  add_index "properties", ["property_type_id"], name: "index_properties_on_property_type_id", using: :btree
+  add_index "properties", ["user_id"], name: "index_properties_on_user_id", using: :btree
 
   create_table "property_types", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -82,4 +104,12 @@ ActiveRecord::Schema.define(version: 20170426010333) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "advertisements", "users"
+  add_foreign_key "bids", "advertisements"
+  add_foreign_key "bids", "users"
+  add_foreign_key "features", "properties"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "photos", "properties"
+  add_foreign_key "properties", "property_types"
+  add_foreign_key "properties", "users"
 end
