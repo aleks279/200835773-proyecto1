@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :properties, only: [:index]
 
+  resources :users do
+    resources :properties
+    resources :bids
+    resources :advertisements
+  end
+
   root 'properties#index'
 end
