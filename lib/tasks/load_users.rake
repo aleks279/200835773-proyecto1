@@ -15,7 +15,7 @@ namespace :load_data do
 
   desc "Create users"
   task users: :environment do
-    15.times do |d|
+    10.times do |d|
       user = update_or_create_user(
         username: Faker::Internet.user_name("user#{d}"),
         first_name: Faker::Name.first_name,
@@ -25,7 +25,7 @@ namespace :load_data do
         address: Faker::Address.street_address,
       )
 
-      5.times do |ap|
+      3.times do |ap|
         property = update_or_create_property(
           price: Random.rand(100000000),
           address: Faker::GameOfThrones.city,
@@ -38,7 +38,7 @@ namespace :load_data do
           update_or_create_photo(url: "properties/property-#{p+1}.jpg", property_id: property.id)
         end
 
-        10.times do |f|
+        5.times do |f|
           update_or_create_feature(description: Faker::ChuckNorris.fact, property_id: property.id)
         end
       end
