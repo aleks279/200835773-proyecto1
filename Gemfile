@@ -31,10 +31,7 @@ gem 'haml-rails', '~> 0.9.0'
 gem 'devise'
 gem 'activeadmin'
 gem 'active_skin'
-
-group :production do
-  gem 'faker'
-end
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,7 +41,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
 end
 
 group :development do
