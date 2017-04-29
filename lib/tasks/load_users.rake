@@ -60,13 +60,13 @@ namespace :load_data do
   end
 
   def update_or_create_feature(attributes)
-    feature = Feature.find_or_initialize_by(description: attributes.delete(:description))
+    feature = Feature.find_or_initialize_by(property_id: attributes.delete(:property_id))
     feature.update_attributes(attributes)
     feature
   end
 
   def update_or_create_photo(attributes)
-    photo = Photo.find_or_initialize_by(url: attributes.delete(:url))
+    photo = Photo.find_or_initialize_by(property_id: attributes.delete(:property_id), url: attributes.delete(:url))
     photo.update_attributes(attributes)
     photo
   end

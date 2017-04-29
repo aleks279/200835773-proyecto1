@@ -2,13 +2,17 @@
   .col
     %h4 Property information
     %hr
-    %p
-      #{ @property.address }
-    %h5
-      %ul
-        - @property.features do |feature|
-          %li
-            #{ feature.description }
+    %ul
+      %li
+        Address: #{ @property.address }
+      %li
+        Price: #{ number_to_currency(@property.price, locale: :en) }
+    %h4 Features
+    %hr
+    %ul
+      - @property.features.each do |feature|
+        %li
+          #{ feature.description } hahaha
   .col
     %h4 Owner contact info
     %hr
