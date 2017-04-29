@@ -1,5 +1,24 @@
-- @advertisements.in_groups_of(3).each do |advertisement_group|
-  .row
-    - advertisement_group.each do |advertisement|
-      .col
-        #{ advertisement.description }
+- if user_signed_in?
+  - current_user.advertisements.in_groups_of(3).each do |advertisement_group|
+    .row
+      - advertisement_group.each do |advertisement|
+        - if advertisement
+          .col
+            .row.justify-content-center
+              = link_to "#{image_tag('property-placeholder.png')}".html_safe, advertisement
+            .row.justify-content-center
+              %p Expiry: #{ advertisement.date_expiry.strftime("%m/%d/%Y") } 
+            .row.justify-content-center
+              %p Posted by #{ advertisement.user.username }
+- else
+  - @advertisements.in_groups_of(3).each do |advertisement_group|
+    .row
+      - advertisement_group.each do |advertisement|
+        - if advertisement  
+          .col
+            .row.justify-content-center
+              = link_to "#{image_tag('property-placeholder.png')}".html_safe, advertisement
+            .row.justify-content-center
+              %p Expiry: #{ advertisement.date_expiry.strftime("%m/%d/%Y") } 
+            .row.justify-content-center
+              %p Posted by #{ advertisement.user.username }

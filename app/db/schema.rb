@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429012005) do
+ActiveRecord::Schema.define(version: 20170429025348) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -47,14 +47,16 @@ ActiveRecord::Schema.define(version: 20170429012005) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "advertisements", force: :cascade do |t|
-    t.datetime "date_posted",               default: '2017-04-29 02:47:09', null: false
-    t.datetime "date_expiry",                                               null: false
+    t.datetime "date_posted",               null: false
+    t.datetime "date_expiry",               null: false
     t.text     "description", limit: 65535
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
+    t.integer  "property_id", limit: 4
   end
 
+  add_index "advertisements", ["property_id"], name: "index_advertisements_on_property_id", using: :btree
   add_index "advertisements", ["user_id"], name: "index_advertisements_on_user_id", using: :btree
 
   create_table "bids", force: :cascade do |t|

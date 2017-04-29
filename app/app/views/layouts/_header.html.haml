@@ -11,6 +11,8 @@
         %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "http://example.com"}
           .user-avatar
             = image_tag "person-placeholder.png"
+            - if user_signed_in?
+              #{ current_user.username }
         .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
           - if user_signed_in?
             = link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item"

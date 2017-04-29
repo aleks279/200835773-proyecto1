@@ -41,6 +41,14 @@ namespace :load_data do
         10.times do |f|
           update_or_create_feature(description: Faker::ChuckNorris.fact, property_id: property.id)
         end
+
+        update_or_create_advertisement(
+          description: Faker::ChuckNorris.fact,
+          user_id: user.id,
+          property_id: property.id,
+          date_posted: Time.zone.now,
+          date_expiry: Time.zone.now + 3.months
+        )
       end
 
     end
