@@ -1,0 +1,34 @@
+.row
+  .col
+    %h4 Personal info
+    %hr
+    %ul
+      %li #{ @user.first_name } #{ @user.last_name }
+      %li #{ @user.username }
+      %li #{ @user.email }
+      %li #{ @user.address }
+.row
+  .col
+    %h4 Properties
+    %hr
+    - @user.properties.in_groups_of(3).each do |property_group|
+      .row
+        - property_group.each do |property|
+          - if property  
+            .col
+              .row.justify-content-center.band-summary
+                - if property.photos.any?
+                  = link_to "#{image_tag(property.photos.first.url)}".html_safe, property
+                - else
+                  = link_to "#{image_tag('property-placeholder.png')}".html_safe, property
+.row
+  .col
+    %h4 Bids
+    %hr
+    - @user.bids.in_groups_of(3).each do |bid_group|
+      .row
+        - bid_group.each do |bid|
+          - if bid  
+            .col
+              .row.justify-content-center.band-summary
+                = link_to "Property ID: #{bid.property.identifier}, for #{bid.price_bided}".html_safe, bid

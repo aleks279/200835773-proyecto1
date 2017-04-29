@@ -1,5 +1,6 @@
 .row
   .col
+    %hr
     %h4 Property information
     %hr
     %ul
@@ -7,6 +8,7 @@
         Address: #{ @property.address }
       %li
         Price: #{ number_to_currency(@property.price, locale: :en) }
+    %hr
     %h4 Features
     %hr
     %ul
@@ -14,6 +16,7 @@
         %li
           #{ feature.description } hahaha
   .col
+    %hr
     %h4 Owner contact info
     %hr
     %ul.pb-1
@@ -23,8 +26,11 @@
         #{ @property.user.username }
       %li
         #{ @property.user.email }
+    - if current_user != @property.user
+      = link_to "Bid for this property", root_path
 .row 
   .col
+    %hr
     %h4 Photos
     %hr
     - @property.photos.in_groups_of(3).each do |photo_group|
