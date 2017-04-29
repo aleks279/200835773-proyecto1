@@ -116,7 +116,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    ffaker (2.5.0)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.40.0)
@@ -481,7 +480,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
-  ffaker
   fog
   font-awesome-sass
   haml

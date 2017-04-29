@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170429012005) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "advertisements", force: :cascade do |t|
-    t.datetime "date_posted",               default: '2017-04-29 01:23:45', null: false
+    t.datetime "date_posted",               default: '2017-04-29 02:47:09', null: false
     t.datetime "date_expiry",                                               null: false
     t.text     "description", limit: 65535
     t.datetime "created_at",                                                null: false
@@ -137,12 +137,4 @@ ActiveRecord::Schema.define(version: 20170429012005) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "advertisements", "users"
-  add_foreign_key "bids", "advertisements"
-  add_foreign_key "bids", "users"
-  add_foreign_key "features", "properties"
-  add_foreign_key "notifications", "users"
-  add_foreign_key "photos", "properties"
-  add_foreign_key "properties", "property_types"
-  add_foreign_key "properties", "users"
 end

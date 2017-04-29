@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
   validates :url, presence: true
 
-  belongss_to :property
+  belongs_to :property
 end
