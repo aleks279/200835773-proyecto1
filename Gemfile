@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.3'
+
 # Framework
 gem 'rails', '4.2.8'
 
@@ -32,6 +34,7 @@ gem 'devise'
 gem 'activeadmin'
 gem 'active_skin'
 gem 'faker'
+gem 'rails_12factor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
