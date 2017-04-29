@@ -1,0 +1,19 @@
+%nav.navbar.navbar-toggleable-md.navbar-inverse.bg-inverse
+  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{:href => "#"}
+    = image_tag("logo.png", class: "d-inline-block align-top", height: 30, width: 30)
+    Buy/Sell Real State
+
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto.pull-right
+      %li.nav-item.dropdown
+        %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "http://example.com"}
+          .user-avatar
+            = image_tag "person-placeholder.png"
+        .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+          - if user_signed_in?
+            = link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item"
+          - else
+            = link_to "Sign up", new_user_registration_path, class: "dropdown-item"
+            = link_to "Sign in", new_user_session_path, class: "dropdown-item"

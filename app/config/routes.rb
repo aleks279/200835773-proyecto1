@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
 
-  resources :properties, only: [:index]
+  resources :advertisements, only: [:index]
 
   resources :users do
     resources :properties
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     resources :advertisements
   end
 
-  root 'properties#index'
+  root 'advertisements#index'
 end
