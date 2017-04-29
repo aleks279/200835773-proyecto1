@@ -31,7 +31,7 @@ namespace :load_data do
           address: Faker::GameOfThrones.city,
           identifier: Faker::Internet.password(10, 20),
           user_id: user.id,
-          property_type_id: Random.rand(PropertyType.all.count)
+          property_type_id: Random.rand(PropertyType.all.count),
         )
 
         4.times do |p|
@@ -41,16 +41,7 @@ namespace :load_data do
         10.times do |f|
           update_or_create_feature(description: Faker::ChuckNorris.fact, property_id: property.id)
         end
-
-        update_or_create_advertisement(
-          description: Faker::ChuckNorris.fact,
-          user_id: user.id,
-          property_id: property.id,
-          date_posted: Time.zone.now,
-          date_expiry: Time.zone.now + 3.months
-        )
       end
-
     end
   end
 
@@ -60,12 +51,6 @@ namespace :load_data do
     user = User.find_or_initialize_by(email: attributes.delete(:email))
     user.update_attributes(attributes)
     user
-  end
-
-  def update_or_create_advertisement(attributes)
-    advertisement = Advertisement.find_or_initialize_by(description: attributes.delete(:description))
-    advertisement.update_attributes(attributes)
-    advertisement
   end
 
   def update_or_create_bids(attributes)

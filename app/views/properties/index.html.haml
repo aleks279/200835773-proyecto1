@@ -1,9 +1,26 @@
-- @properties.in_groups_of(3).each do |property_group|
-  .row.spacing-top
-    - property_group.each do |property|
-      - if property
-        .col-md-1
-        .col-md-2
-          - link_to "#{image_tag('property-placeholder.png')}".html_safe, property
-          .col-md-12
-            
+- if user_signed_in?
+  - current_user.properties.in_groups_of(3).each do |property_group|
+    .row
+      - property_group.each do |property|
+        - if property
+          .col
+            .row.justify-content-center.band-summary
+              - if property.photos.any?
+                = link_to "#{image_tag(property.photos.first.url)}".html_safe, property
+              - else
+                = link_to "#{image_tag('property-placeholder.png')}".html_safe, property
+            .row.justify-content-center
+              %p Posted by #{ property.user.username }
+- else
+  - @properties.in_groups_of(3).each do |property_group|
+    .row
+      - property_group.each do |property|
+        - if property  
+          .col
+            .row.justify-content-center.band-summary
+              - if property.photos.any?
+                = link_to "#{image_tag(property.photos.first.url)}".html_safe, property
+              - else
+                = link_to "#{image_tag('property-placeholder.png')}".html_safe, property
+            .row.justify-content-center
+              %p Posted by #{ property.user.username }

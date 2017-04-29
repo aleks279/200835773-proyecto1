@@ -1,0 +1,36 @@
+.row
+  .col
+    %h4 Ad description
+    %hr
+    %p.pb-1
+      #{ @advertisement.description }
+  .col
+    %h4 Ad poster contact info
+    %hr
+    %ul.pb-1
+      %li
+        #{ @advertisement.user.first_name }
+      %li
+        #{ @advertisement.user.last_name }
+      %li
+        #{ @advertisement.user.username }
+      %li
+        #{ @advertisement.user.email }
+.row
+  .col
+    %h4 Property information
+    %hr
+    %p
+      #{ @advertisement.property.address }
+    %ul
+      - @advertisement.property.features do |feature|
+        %li
+          #{ feature.description }
+  .col
+    %h4 Photos
+    %hr
+    - @advertisement.property.photos.in_groups_of(3).each do |photo_group|
+      .row
+        - photo_group.each do |photo|
+          .col
+            = image_tag photo.url

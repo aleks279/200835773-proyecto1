@@ -1,0 +1,31 @@
+.row
+  .col
+    %h4 Property information
+    %hr
+    %p
+      #{ @property.address }
+    %h5
+      %ul
+        - @property.features do |feature|
+          %li
+            #{ feature.description }
+  .col
+    %h4 Owner contact info
+    %hr
+    %ul.pb-1
+      %li
+        #{ @property.user.first_name } #{ @property.user.last_name }
+      %li
+        #{ @property.user.username }
+      %li
+        #{ @property.user.email }
+.row 
+  .col
+    %h4 Photos
+    %hr
+    - @property.photos.in_groups_of(3).each do |photo_group|
+      .row.pb-5
+        - photo_group.each do |photo|
+          - if photo
+            .col.band-summary
+              = image_tag photo.url
