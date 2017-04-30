@@ -21,14 +21,15 @@
                   = link_to "#{image_tag(property.photos.first.url)}".html_safe, property
                 - else
                   = link_to "#{image_tag('property-placeholder.png')}".html_safe, property
-.row
-  .col
-    %h4 Bids
-    %hr
-    - @user.bids.in_groups_of(3).each do |bid_group|
-      .row
-        - bid_group.each do |bid|
-          - if bid  
-            .col
-              .row.justify-content-center.band-summary
-                = link_to "Property ID: #{bid.property.identifier}, for #{bid.price_bided}".html_safe, bid
+- if current_user == @user  
+  .row
+    .col
+      %h4 Bids
+      %hr
+      - @user.bids.in_groups_of(3).each do |bid_group|
+        .row
+          - bid_group.each do |bid|
+            - if bid  
+              .col
+                .row.justify-content-center.band-summary
+                  = link_to "Property ID: #{bid.property.identifier}, for #{bid.price_bided}".html_safe, property_path(bid.property)
