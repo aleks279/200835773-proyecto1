@@ -50,7 +50,7 @@
       - bid_group.each do |bid|
         - if bid && bid.user
           .col
-            #{ bid.user.try(:username) } bided for #{ number_to_currency(bid.price_bided, locale: :en) }
+            #{ link_to "#{bid.user.try(:username)}", user_path(bid.user) } bided for #{ number_to_currency(bid.price_bided, locale: :en) }
 
 .row 
   .col

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :properties, only: [:index, :show]
+  resources :properties, only: [:index, :show] do
+    resources :bids, only: [:show]
+  end
 
   resources :users do
     resources :properties do

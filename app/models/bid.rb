@@ -1,4 +1,4 @@
 class Bid < ActiveRecord::Base
  belongs_to :user
- belongs_to :advertisement
+ belongs_to :property
 end
