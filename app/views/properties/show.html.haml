@@ -26,8 +26,27 @@
         #{ @property.user.username }
       %li
         #{ @property.user.email }
+    %hr
+    %h4 Bid for this property
+    %hr
     - if current_user != @property.user
-      = link_to "Bid for this property", root_path
+      = form_for([current_user, @property, @property.bids.build]) do |f|
+        = f.number_field :price_bided
+        = f.number_field :user_id, hidden: true, value: current_user.id
+        = f.number_field :property_id, hidden: true, value: @property.id
+        = f.submit
+
+- if @property.bids.count > 0
+  %hr
+  %h4 Bids
+  %hr
+  - @property.bids.in_groups_of(5).each do |bid_group|
+    .row
+      - bid_group.each do |bid|
+        - if bid && bid.user
+          .col
+            #{ bid.user.try(:username) } bided for #{ number_to_currency(bid.price_bided, locale: :en) }
+
 .row 
   .col
     %hr

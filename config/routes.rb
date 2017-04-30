@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :properties, only: [:index, :show]
 
   resources :users do
-    resources :properties
-    resources :bids
+    resources :properties do
+      resources :bids, only: [:create]
+    end
   end
 
   root 'properties#index'
