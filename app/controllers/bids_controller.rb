@@ -6,7 +6,6 @@ class BidsController < ApplicationController
   before_action :find_user, only: [:create]
 
   def create
-    binding.pry
     @bid = @property.bids.create(bid_params)
 
     redirect_to property_path(@property)
