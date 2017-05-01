@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Property, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Property do
+  describe 'associations' do
+    it { should belong_to(:user) }
+    xit { should have_one(:property_type) }
+    it { should have_many(:photos) }
+    it { should have_many(:features) }
+    it { should have_many(:bids) }
+  end
 end

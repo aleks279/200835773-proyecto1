@@ -8,6 +8,5 @@ class User < ActiveRecord::Base
 
   has_many :notifications
   has_many :bids
-  has_many :advertisements
   has_many :properties
 end
